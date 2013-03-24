@@ -9,9 +9,14 @@ describe "Static pages" do
       page.should have_selector('h1', :text => 'Logiloans')
     end
     
-    it "should have the title 'Logiloans'" do
+    it "should have the default title" do
       visit '/static_pages/home'
-      page.should have_selector('title', :text => "Home | #{base_title}")
+      page.should have_selector('title', :text => "Loans that make sense - #{base_title}")
+    end
+    
+    it "should not have a custom page title" do
+      visit '/static_pages/home'
+      page.should_not have_selector('title', :text => 'Home |')
     end
   end
   
