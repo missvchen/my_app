@@ -13,11 +13,11 @@
 require 'spec_helper'
 
 describe User do
-  before { @user = User.new(name: "Example User",
-                            display_name: "E. User",
-                            email: "user@example.com",
+  before { @user = User.new(email: "user@example.com",
                             password: "foobar",
-                            password_confirmation: "foobar") }
+                            password_confirmation: "foobar",
+                            name: "Example User",
+                            display_name: "E. User") }
   
   subject { @user }
   
@@ -31,18 +31,8 @@ describe User do
   
   it { should be_valid }
   
-  describe "when name is not present" do
-    before { @user.name = " " }
-    it { should_not be_valid }
-  end
-  
   describe "when name is too long" do
     before { @user.name = 'a' * 51 }
-    it { should_not be_valid }
-  end
-  
-  describe "when name is too short" do
-    before { @user.name = 'a' }
     it { should_not be_valid }
   end
   
