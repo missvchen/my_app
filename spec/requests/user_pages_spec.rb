@@ -8,8 +8,8 @@ describe "UserPages" do
     let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
 
-    it { should have_selector('h1', text: 'Account') }
-    it { should have_selector('title', text: full_title('Account')) }
+    it { should have_selector('h1', text: 'Account Overview') }
+    it { should have_selector('title', text: full_title('Account Overview')) }
   end
 
   describe "sign up page" do
@@ -33,8 +33,7 @@ describe "UserPages" do
         before { click_button submit }
         
         it { should have_selector('title', text: 'Sign up') }
-        it { should have_content('error') }
-        it { should have_selector('div.alert.alert-error', content: 'error') }
+        it { should have_selector('div.alert.alert-error', text: 'error') }
         it { should have_selector('li', text: "* Email can't be blank") }
         it { should have_selector('li', text: "* Email is invalid") }
         it { should have_selector('li', text: "* Password can't be blank") }
@@ -59,7 +58,7 @@ describe "UserPages" do
         before { click_button submit }
         let(:user) { User.find_by_email('user@example.com') }
         
-        it { should have_selector('title', text: 'Account') }
+        it { should have_selector('title', text: 'Account Overview') }
         it { should have_selector('div.alert.alert-success', text: 'Please check your email to complete your registration.')}
       end
     end
